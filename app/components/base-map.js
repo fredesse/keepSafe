@@ -68,7 +68,7 @@ export default class BaseMap extends Component {
         console.log('What is the base-map userData', userData);
         let token = userData[0][1];
         let userId = userData[1][1];
-        
+
         // Set all axios headers in this component to have default header
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         // Set the initial userId state
@@ -322,7 +322,7 @@ export default class BaseMap extends Component {
           // Open up SMS with content prefilled
           SendSMS.send({
             body: `Hey, I'm currently at ${address.slice(0, 3).join(',').toUpperCase()}. I'm walking to ${destination.slice(0, 3).join(',').toUpperCase()}.`,
-            recipients: ['0123456789', '9876543210'],
+            recipients: this.state.contactNumbers,
             successTypes: ['sent', 'queued']
           }, (completed, cancelled, error) => {
             console.log('SMS Callback: completed: ' + completed + ' cancelled: ' + cancelled + 'error: ' + error);
